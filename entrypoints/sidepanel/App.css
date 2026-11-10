@@ -1,0 +1,175 @@
+:root {
+  --bg: #f1f3f4;
+  --card: #ffffff;
+  --card-hover: #e8f0fe;
+  --text: #202124;
+  --muted: #5f6368;
+  --accent: #1a73e8;
+  --danger: #d93025;
+  --border: #dadce0;
+  --shadow: 0 1px 2px rgba(60, 64, 67, 0.15), 0 1px 3px rgba(60, 64, 67, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #202124;
+    --card: #2d2e31;
+    --card-hover: #35363a;
+    --text: #e8eaed;
+    --muted: #9aa0a6;
+    --accent: #8ab4f8;
+    --danger: #f28b82;
+    --border: #3c4043;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  /* set on body, not :root: Chrome injects its own body font rules into extension pages */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+}
+
+/* ---------- search ---------- */
+
+.search-bar {
+  position: sticky; /* stays at the top while the list scrolls */
+  top: 0;
+  z-index: 1;
+  padding: 8px 8px 4px;
+  background: var(--bg);
+}
+
+.search-bar input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+
+.search-bar input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.empty {
+  padding: 16px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---------- list ---------- */
+
+.tabs-container {
+  list-style: none;
+  margin: 0;
+  padding: 4px 8px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tab-tile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 6px 6px 10px;
+  min-height: 24px;
+  background: var(--card);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: background 0.12s ease, opacity 0.12s ease;
+}
+
+.tab-tile:hover {
+  background: var(--card-hover);
+}
+
+.tab-tile.active {
+  box-shadow: inset 3px 0 0 var(--accent), var(--shadow);
+  font-weight: 600;
+}
+
+/* slept (discarded) tabs look dimmed */
+.tab-tile.sleeping {
+  opacity: 0.55;
+}
+
+.tab-tile.sleeping .tab-title {
+  font-style: italic;
+}
+
+.favicon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.favicon.placeholder {
+  border-radius: 4px;
+  background: var(--muted);
+  opacity: 0.3;
+}
+
+/* truncation */
+.tab-title {
+  flex: 1;
+  min-width: 0; /* lets a flex child shrink below its text width */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- action buttons ---------- */
+
+/* hidden until you hover the tile, so the list stays clean */
+.tab-actions {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.tab-tile:hover .tab-actions,
+.tab-tile:focus-within .tab-actions {
+  opacity: 1;
+}
+
+.icon-btn {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.icon-btn:hover {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
+}
+
+.icon-btn.close:hover {
+  background: color-mix(in srgb, var(--danger) 15%, transparent);
+  color: var(--danger);
+}
+
+/* sleeping tiles are dimmed; keep their buttons at full strength */
+.tab-tile.sleeping:hover {
+  opacity: 1;
+}
