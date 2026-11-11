@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3d8bf2"/>
+      <stop offset="1" stop-color="#1557c9"/>
+    </linearGradient>
+    <mask id="moon">
+      <rect width="128" height="128" fill="#fff"/>
+      <circle cx="97.5" cy="84.5" r="7" fill="#000"/>
+    </mask>
+  </defs>
+  <!-- 96x96 artwork inside 16px transparent padding, per Chrome Web Store guidelines -->
+  <rect x="16" y="16" width="96" height="96" rx="24" fill="url(#g)"/>
+  <!-- active tab -->
+  <rect x="30" y="32" width="12" height="12" rx="3.5" fill="#fff"/>
+  <rect x="48" y="34" width="50" height="8" rx="4" fill="#fff"/>
+  <!-- awake tab -->
+  <rect x="30" y="58" width="12" height="12" rx="3.5" fill="#fff" opacity=".85"/>
+  <rect x="48" y="60" width="40" height="8" rx="4" fill="#fff" opacity=".85"/>
+  <!-- sleeping tab -->
+  <rect x="30" y="84" width="12" height="12" rx="3.5" fill="#fff" opacity=".45"/>
+  <rect x="48" y="86" width="28" height="8" rx="4" fill="#fff" opacity=".45"/>
+  <circle cx="93" cy="90" r="7.5" fill="#fff" mask="url(#moon)"/>
+</svg>
