@@ -2,7 +2,7 @@
 
 A Chrome extension that lists all your open tabs in the side panel, so you can search, switch, close, and put tabs to sleep to free up memory.
 
-![Tab Manager side panel](docs/extension-demo.png)
+![Tabbernate side panel](docs/extension-demo.png)
 
 ## Features
 
