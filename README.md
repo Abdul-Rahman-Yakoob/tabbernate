@@ -1,4 +1,4 @@
-# Tabbernate
+# Tabbernate – Tab Manager and Memory Saver
 
 A Chrome extension that lists all your open tabs in the side panel, so you can search, switch, close, and put tabs to sleep to free up memory.
 
