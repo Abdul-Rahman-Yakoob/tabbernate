@@ -33,20 +33,22 @@ body {
   font-size: 13px;
 }
 
-/* ---------- search ---------- */
+/* ---------- toolbar: search + sort ---------- */
 
-.search-bar {
+.toolbar {
   position: sticky; /* stays at the top while the list scrolls */
   top: 0;
   z-index: 1;
+  display: flex;
+  gap: 6px;
   padding: 8px 8px 4px;
   background: var(--bg);
 }
 
-.search-bar input {
-  width: 100%;
+.toolbar input,
+.toolbar select {
   box-sizing: border-box;
-  padding: 8px 12px;
+  padding: 8px 10px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--card);
@@ -55,7 +57,19 @@ body {
   outline: none;
 }
 
-.search-bar input:focus {
+.toolbar input {
+  flex: 1;
+  min-width: 0;
+}
+
+.toolbar select {
+  flex-shrink: 0;
+  max-width: 45%;
+  cursor: pointer;
+}
+
+.toolbar input:focus,
+.toolbar select:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 25%, transparent);
 }
@@ -82,7 +96,7 @@ body {
   align-items: center;
   gap: 10px;
   padding: 6px 6px 6px 10px;
-  min-height: 24px;
+  min-height: 28px; /* same height as the buttons, so tiles don't jump on hover */
   background: var(--card);
   border-radius: 8px;
   box-shadow: var(--shadow);
@@ -131,18 +145,32 @@ body {
 
 /* ---------- action buttons ---------- */
 
+/* "last used" label; swaps places with the action buttons on hover */
+.tab-meta {
+  flex-shrink: 0;
+  min-width: 28px;
+  text-align: right;
+  font-size: 11px;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--muted);
+}
+
 /* hidden until you hover the tile, so the list stays clean */
 .tab-actions {
-  display: flex;
+  display: none;
   gap: 2px;
   flex-shrink: 0;
-  opacity: 0;
-  transition: opacity 0.12s ease;
 }
 
 .tab-tile:hover .tab-actions,
 .tab-tile:focus-within .tab-actions {
-  opacity: 1;
+  display: flex;
+}
+
+.tab-tile:hover .tab-meta,
+.tab-tile:focus-within .tab-meta {
+  display: none;
 }
 
 .icon-btn {
